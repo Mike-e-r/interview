@@ -141,6 +141,11 @@ class TechSupportPage extends StatelessWidget {
 
                                   _techSupportController
                                       .techSupportCurrentRequest
+                                      .value
+                                      ?.typeQuestion = value?.idDomain;
+
+                                  _techSupportController
+                                      .techSupportCurrentRequest
                                       .refresh();
                                 },
                                 validator: (value) {
