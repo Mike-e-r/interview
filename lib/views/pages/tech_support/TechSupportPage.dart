@@ -119,7 +119,8 @@ class TechSupportPage extends StatelessWidget {
                                   t.tech_support_select_section_or_argument,
                                   style: smallHintTextStyle(),
                                 ),
-                                items: _techSupportController.techSupportDomains.toList()
+                                items: _techSupportController.techSupportDomains
+                                    .toList()
                                     .map((TechSupportDomainModel value) {
                                   return DropdownMenuItem<
                                       TechSupportDomainModel>(
@@ -247,26 +248,25 @@ class TechSupportPage extends StatelessWidget {
                                           _techSupportController
                                               .shouldValidate.value = false;
 
-                                          Get.dialog(
-                                            OperationSuccessDialog(
+                                          _techSupportController
+                                              .sendSupportTicket(
+                                                  onComplete: () {
+                                            ///Reset parameters, go back and pop success dialog
+                                            _techSupportController
+                                                .resetTechRequestParameters();
+                                            Get.back();
+                                            Get.dialog(
+                                              OperationSuccessDialog(
                                                 imagePath:
                                                     "lib/assets/images/img_report_complete.png",
                                                 title: t
                                                     .tech_support_confirm_title,
                                                 message: t.common_lorem_ipsum,
                                                 positiveLabel: t.common_ok,
-                                                onPositivePressed: () {}),
-                                          );
-                                          // _techSupportController
-                                          //     .sendSupportTicket(
-                                          //     onComplete:
-                                          //         () {
-                                          //       //TODO reset parameters, go back and pop success dialog
-                                          //       _techSupportController
-                                          //           .resetTechRequestParameters();
-                                          //       Get.back();
-                                          //     }
-                                          // );
+                                                onPositivePressed: () {},
+                                              ),
+                                            );
+                                          });
                                         } else {
                                           _techSupportController
                                               .shouldValidate.value = true;
