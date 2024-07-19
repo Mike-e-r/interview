@@ -29,6 +29,7 @@ class TechSupportPage extends StatelessWidget {
 
     return Obx(
       () => Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: CustomColors.backgroundColor,
         body: SafeArea(
           child: Form(
@@ -43,9 +44,11 @@ class TechSupportPage extends StatelessWidget {
                 Expanded(
                   child: Stack(
                     children: [
-                      Image.asset(
-                        "lib/assets/images/background_leaf.png",
-                        fit: BoxFit.cover,
+                      Positioned.fill(
+                        child: Image.asset(
+                          "lib/assets/images/background_leaf.png",
+                          fit: BoxFit.fitWidth,
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20.0),
